@@ -38,8 +38,8 @@ public class webController {
     public Object m3u8(@RequestParam Map<String, String> params) {
         log.info("params:{}", params);
         m3u8Utils m3u8Utils = new m3u8Utils();
-        m3u8Utils.downland(params.get("url"), params.get("fileName"));
-        params.put("msg", "操作成功,视频路径是{D://m3u8_video/}");
+        String filePath = m3u8Utils.downland(params.get("url"), params.get("fileName"));
+        params.put("msg", filePath);
         return params;
     }
 
