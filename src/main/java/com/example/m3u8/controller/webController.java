@@ -36,7 +36,7 @@ public class webController {
     public Object m3u8(@RequestBody JSONObject jsonObeject) {
         log.info("{}", jsonObeject);
         m3u8Utils m3u8Utils = new m3u8Utils();
-        String filePath = m3u8Utils.downland(jsonObeject.getString("m3u8_url"), jsonObeject.getString("title"));
+        String filePath = m3u8Utils.downland(jsonObeject.getString("m3u8Url"), jsonObeject.getString("title"));
         return jsonObeject.toString().concat(filePath);
     }
 
