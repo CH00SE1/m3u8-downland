@@ -6,7 +6,7 @@ import com.example.m3u8.entity.HsInfo;
 import com.example.m3u8.entity.HsInfoDTO;
 import com.example.m3u8.service.IHsInfoService;
 import lombok.extern.slf4j.Slf4j;
-import net.m3u8.utils.m3u8Utils;
+import net.m3u8.m3u8;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,9 +35,8 @@ public class webController {
     @PostMapping(value = "/download")
     public Object m3u8(@RequestBody JSONObject jsonObeject) {
         log.info("{}", jsonObeject);
-        m3u8Utils m3u8Utils = new m3u8Utils();
-        String filePath = m3u8Utils.downland(jsonObeject.getString("m3u8Url"), jsonObeject.getString("title"));
-        return jsonObeject.toString().concat(filePath);
+        String filePath = new m3u8().downlandFlie(jsonObeject.getString("m3u8Url"), jsonObeject.getString("title"));
+        return "filePath".concat(filePath);
     }
 
     /**
@@ -57,5 +56,4 @@ public class webController {
         }
         return hsInfoDTOs;
     }
-
 }
