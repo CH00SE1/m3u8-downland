@@ -1,6 +1,5 @@
 package com.example.m3u8.controller;
 
-import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.m3u8.entity.HsInfo;
 import com.example.m3u8.service.IHsInfoService;
@@ -26,14 +25,15 @@ public class webController {
     /**
      * 调用下载接口
      *
-     * @param jsonObeject
-     * @return
+     * @param hsInfos
      */
     @PostMapping(value = "/download")
-    public Object m3u8(@RequestBody JSONObject jsonObeject) {
-        log.info("{}", jsonObeject);
-        String filePath = new m3u8().downlandFlie(jsonObeject.getString("m3u8Url"), jsonObeject.getString("title"));
-        return "filePath".concat(filePath);
+    public void m3u8(@RequestBody List<HsInfo> hsInfos) throws RuntimeException {
+        for (HsInfo hsInfo : hsInfos) {
+            log.info("m3u8Url:{}\ntitle:{}", hsInfo.getm3u8Url(), hsInfo.getTitle());
+            String filePath = new m3u8().downlandFlie(hsInfo.getm3u8Url(), hsInfo.getTitle());
+            log.info("filePath:{}", filePath);
+        }
     }
 
     /**
@@ -45,8 +45,9 @@ public class webController {
     @PostMapping(value = "/list/{title}")
     public List<HsInfo> list(@PathVariable(name = "title") String title) {
         return hsInfoService.list(
-                new LambdaQueryWrapper<HsInfo>().like(HsInfo::getTitle, title).
-                        orderByDesc(HsInfo::getCreatedAt)
+                new LambdaQueryWrapper<HsInfo>().like(HsInfo::getTitle, title)
+                        .orderByDesc(HsInfo::getCreatedAt)
         );
     }
+
 }
