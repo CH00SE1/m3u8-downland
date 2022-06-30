@@ -65,5 +65,5 @@ spring:
 # 日志配置
 logging:
   level:
-    com.example: info
-    org.springframework: info
+    com.example: debug
+    org.springframework: warn
