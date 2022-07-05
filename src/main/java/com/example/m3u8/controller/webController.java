@@ -1,6 +1,7 @@
 package com.example.m3u8.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.example.m3u8.common.redis.RedisCache;
 import com.example.m3u8.entity.HsInfo;
 import com.example.m3u8.service.IHsInfoService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Liushaoxiong
@@ -21,6 +23,9 @@ public class webController {
 
     @Resource
     private IHsInfoService hsInfoService;
+
+    @Resource
+    public RedisCache redisCache;
 
     /**
      * 调用下载接口
@@ -43,11 +48,13 @@ public class webController {
      * @return
      */
     @GetMapping(value = "/list/{title}")
-    public List<HsInfo> list(@PathVariable(name = "title") String title) {
-        return hsInfoService.list(
-                new LambdaQueryWrapper<HsInfo>().like(HsInfo::getTitle, title)
-                        .orderByDesc(HsInfo::getCreatedAt)
-        );
+    public Object list(@PathVariable(name = "title") String title) {
+        if (redisCache.getCacheObject(title) != null) {
+            return redisCache.getCacheObject(title);
+        }
+        List<HsInfo> hsInfos = hsInfoService.list(new LambdaQueryWrapper<HsInfo>().like(HsInfo::getTitle, title));
+        redisCache.setCacheObject(title, hsInfos, 10, TimeUnit.SECONDS);
+        return hsInfos;
     }
 
 }

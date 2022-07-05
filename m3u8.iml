@@ -62,6 +62,22 @@
     <orderEntry type="library" name="Maven: jakarta.servlet:jakarta.servlet-api:4.0.4" level="project" />
     <orderEntry type="library" name="Maven: jakarta.websocket:jakarta.websocket-api:1.1.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:9.0.63" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-redis:2.6.7" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-redis:2.7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-keyvalue:2.7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.20" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-oxm:5.3.20" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context-support:5.3.20" level="project" />
+    <orderEntry type="library" name="Maven: io.lettuce:lettuce-core:6.1.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.77.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.77.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.77.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.77.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.77.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.77.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.4.18" level="project" />
+    <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:2.7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:2.7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test-autoconfigure:2.7.0" level="project" />
@@ -107,7 +123,6 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-jdbc:2.7.0" level="project" />
     <orderEntry type="library" name="Maven: com.zaxxer:HikariCP:4.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.3.20" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.20" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-generator:3.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.31" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.29" level="project" />
