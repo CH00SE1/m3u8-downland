@@ -30,7 +30,7 @@ public class webController {
     @PostMapping(value = "/download")
     public void m3u8(@RequestBody List<HsInfo> hsInfos) throws RuntimeException {
         for (HsInfo hsInfo : hsInfos) {
-            log.info("m3u8Url:{}\ntitle:{}", hsInfo.getm3u8Url(), hsInfo.getTitle());
+            log.info("getInfo:{}-{}", hsInfo.getm3u8Url(), hsInfo.getTitle());
             String filePath = new m3u8().downlandFlie(hsInfo.getm3u8Url(), hsInfo.getTitle());
             log.info("filePath:{}", filePath);
         }
@@ -42,7 +42,7 @@ public class webController {
      * @param title
      * @return
      */
-    @PostMapping(value = "/list/{title}")
+    @GetMapping(value = "/list/{title}")
     public List<HsInfo> list(@PathVariable(name = "title") String title) {
         return hsInfoService.list(
                 new LambdaQueryWrapper<HsInfo>().like(HsInfo::getTitle, title)

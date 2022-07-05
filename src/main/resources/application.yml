@@ -1,8 +1,10 @@
 server:
-  port: 8080
-  tomcat:
-    max-connections: 1000
-    uri-encoding: UTF-8
+  undertow:
+    threads:
+      io: 16
+      worker: 2000
+    buffer-size: 1024
+    direct-buffers: true
 
 
 # spring 配置
@@ -23,11 +25,11 @@ spring:
           username: root
           password: 11098319
         # 虚拟机mysql
-#        centos:
-#          driverClassName: com.mysql.cj.jdbc.Driver
-#          url: jdbc:mysql://192.168.10.142:3306/djwk_test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-#          username: root
-#          password: xiAtiAn@djwk
+      #        centos:
+      #          driverClassName: com.mysql.cj.jdbc.Driver
+      #          url: jdbc:mysql://192.168.10.142:3306/djwk_test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+      #          username: root
+      #          password: xiAtiAn@djwk
       druid:
         # 初始连接数
         initialSize: 5
