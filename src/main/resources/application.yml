@@ -5,6 +5,10 @@ server:
       worker: 2000
     buffer-size: 1024
     direct-buffers: true
+    accesslog:
+      dir: /lsx/log/
+      enabled: true
+      prefix: web.
 
 
 # spring 配置
@@ -13,7 +17,7 @@ spring:
   redis:
     host: localhost
     port: 6379
-    database: 1
+    database: 2
     password:
     timeout: 10s
     lettuce:
