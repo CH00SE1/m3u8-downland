@@ -6,9 +6,9 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.m3u8.common.redis.RedisCache;
 import com.example.m3u8.entity.HsInfo;
 import com.example.m3u8.service.IHsInfoService;
-import com.example.m3u8.service.IOpenService;
 import lombok.extern.slf4j.Slf4j;
 import net.m3u8.m3u8;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,7 +31,7 @@ public class webController {
     public RedisCache redisCache;
 
     @Resource
-    public IOpenService openService;
+    public RedisTemplate redisTemplate;
 
     /**
      * 调用下载接口
@@ -78,14 +78,9 @@ public class webController {
         return "success";
     }
 
-    @GetMapping(value = "/JsonSaveRedis/{text}")
-    public Object getKeys(@PathVariable(name = "text") String text) {
-        log.info("text:{}", text);
-        Object object = redisCache.getCacheObject(text);
-        if (object == null) {
-            return "can't get key:" + text + " values";
-        }
-        return object;
+    @GetMapping(value = "/JsonSaveRedis/clinet")
+    public Object getKeys() {
+        return redisTemplate.getClientList();
     }
 
 }
