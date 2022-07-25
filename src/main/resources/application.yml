@@ -9,6 +9,7 @@ server:
       dir: /lsx/log/
       enabled: true
       prefix: web.
+  port: 8312
 
 
 # spring 配置
@@ -38,7 +39,7 @@ spring:
         # 本地mysql
         local:
           driverClassName: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://192.168.10.87:3306/djwk_test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+          url: jdbc:mysql://192.168.10.87:3306/local?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
           username: root
           password: 11098319
         # 虚拟机mysql
