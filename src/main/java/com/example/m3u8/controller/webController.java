@@ -39,12 +39,14 @@ public class webController {
      * @param hsInfos
      */
     @PostMapping(value = "/download")
-    public void m3u8(@RequestBody List<HsInfo> hsInfos) throws RuntimeException {
+    public String m3u8(@RequestBody List<HsInfo> hsInfos) throws RuntimeException {
+        String str = null;
         for (HsInfo hsInfo : hsInfos) {
-            log.info("getInfo:{}-{}", hsInfo.getm3u8Url(), hsInfo.getTitle());
-            String filePath = new m3u8().downlandFlie(hsInfo.getm3u8Url(), hsInfo.getTitle());
-            log.info("filePath:{}", filePath);
+            log.info("[m3u8Url:{}\tTitle:{}\tPlatform:{}]", hsInfo.getm3u8Url(), hsInfo.getTitle(), hsInfo.getPlatform());
+            String filePath = new m3u8().downlandFlie(hsInfo.getm3u8Url(), hsInfo.getTitle(), hsInfo.getPlatform());
+            str += filePath;
         }
+        return str;
     }
 
     /**
