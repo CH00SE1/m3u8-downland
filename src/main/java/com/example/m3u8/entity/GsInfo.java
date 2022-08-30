@@ -1,10 +1,11 @@
 package com.example.m3u8.entity;
 
-import com.alibaba.excel.annotation.write.style.ColumnWidth;
-import com.alibaba.excel.annotation.write.style.ContentFontStyle;
-import com.alibaba.excel.annotation.write.style.HeadRowHeight;
+import com.alibaba.excel.annotation.write.style.*;
+import com.alibaba.excel.enums.BooleanEnum;
+import com.alibaba.excel.enums.poi.HorizontalAlignmentEnum;
+import com.alibaba.excel.enums.poi.VerticalAlignmentEnum;
+import com.alibaba.fastjson2.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,42 +25,45 @@ import java.io.Serializable;
 @ApiModel(value = "GsInfo对象", description = "")
 @Getter
 @Setter
-@ContentFontStyle(fontName = "微软雅黑", fontHeightInPoints = 10)
-@HeadRowHeight(20)
-@ColumnWidth(22)
+@HeadStyle(locked = BooleanEnum.TRUE)
+@HeadFontStyle(fontName = "等线", fontHeightInPoints = 14, bold = BooleanEnum.TRUE)
+@ContentFontStyle(fontName = "微软雅黑", fontHeightInPoints = 12)
+@HeadRowHeight(value = 25)
+@ColumnWidth(value = 22)
 @EqualsAndHashCode
+@ContentStyle(horizontalAlignment = HorizontalAlignmentEnum.CENTER, verticalAlignment = VerticalAlignmentEnum.CENTER)
 public class GsInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @SerializedName("end_date")
+    @JSONField(name = "end_date")
     private String endDate;
 
     private String flag;
 
     private String disease;
 
-    @SerializedName("gz_flag")
+    @JSONField(name = "gz_flag")
     private String gzFlag;
 
-    @SerializedName("indi_id")
+    @JSONField(name = "indi_id")
     private String indiId;
 
-    @SerializedName("fin_date")
+    @JSONField(name = "fin_date")
     private String finDate;
 
-    @SerializedName("biz_type")
+    @JSONField(name = "biz_type")
     private String bizType;
 
-    @SerializedName("begin_date")
+    @JSONField(name = "begin_date")
     private String beginDate;
 
-    @SerializedName("treat_type")
+    @JSONField(name = "treat_type")
     private String treatType;
 
     private String xb;
 
-    @SerializedName("corp_name")
+    @JSONField(name = "corp_name")
     @ColumnWidth(value = 50)
     private String corpName;
 
@@ -69,16 +73,16 @@ public class GsInfo implements Serializable {
 
     private String name;
 
-    @SerializedName("insr_code")
+    @JSONField(name = "insr_code")
     private String insrCode;
 
-    @SerializedName("dz_flag")
+    @JSONField(name = "dz_flag")
     private String dzFlag;
 
-    @SerializedName("serial_no")
+    @JSONField(name = "serial_no")
     private String serialNo;
 
-    @SerializedName("pers_type")
+    @JSONField(name = "pers_type")
     private String persType;
 
 }

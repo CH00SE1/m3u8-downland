@@ -12,7 +12,6 @@ import com.example.m3u8.entity.GsInfo;
 import com.example.m3u8.entity.HsInfo;
 import com.example.m3u8.service.IGsInfoService;
 import com.example.m3u8.service.IHsInfoService;
-import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import net.m3u8.m3u8;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -109,10 +108,14 @@ public class webController {
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             response.setCharacterEncoding("utf-8");
             // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
-            String fileName = URLEncoder.encode("工伤" + DateUtils.format(new Date(), DateUtils.DATE_FORMAT_14), "UTF-8").replaceAll("\\+", "%20");
+            String fileName = URLEncoder
+                    .encode("工伤" + DateUtils.format(new Date(), DateUtils.DATE_FORMAT_19), "UTF-8")
+                    .replaceAll("\\+", "%20");
             response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
             // 这里需要设置不关闭流
-            EasyExcel.write(response.getOutputStream(), GsInfo.class).autoCloseStream(Boolean.FALSE).sheet("数据").doWrite(json2sql(jsonObject));
+            EasyExcel.write(response.getOutputStream(), GsInfo.class)
+                    .autoCloseStream(Boolean.FALSE).sheet("工伤" + DateUtils.format(new Date(), DateUtils.DATE_FORMAT_14))
+                    .doWrite(json2sql(jsonObject));
         } catch (Exception e) {
             // 重置response
             response.reset();
@@ -126,7 +129,6 @@ public class webController {
     }
 
     public List<GsInfo> json2sql(JSONObject jsonObject) throws RuntimeException {
-        Gson gson = new Gson();
         List<GsInfo> gsInfos = new ArrayList<>();
         for (int i = 1; i < Integer.MAX_VALUE; i++) {
             JSONObject jsonObj = jsonObject.getJSONObject("Program").getJSONObject("info").getJSONObject("row" + i);
@@ -134,7 +136,7 @@ public class webController {
                 break;
             }
 //            convert(jsonObj);
-            GsInfo gsInfo = gson.fromJson(jsonObj.toString(), GsInfo.class);
+            GsInfo gsInfo = JSONObject.parseObject(jsonObj.toString(), GsInfo.class);
             gsInfos.add(gsInfo);
         }
         return gsInfos;
